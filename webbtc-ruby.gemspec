@@ -7,15 +7,16 @@ Gem::Specification.new do |s|
   s.version     = Webbtc::VERSION
   s.date        = '2015-07-13'
   s.summary     = 'Ruby SDK for Webbtc'
-  s.description = 'Ruby SDK for Webbtc'
+  s.description = 'Ruby SDK for Webbtc public API'
   s.authors     = ['Genaro Madrid']
   s.email       = 'genmadrid@gmail.com'
-  s.files       = ['lib/webbtc.rb']
   s.homepage    = 'https://github.com/genaromadrid/webbtc-ruby'
   s.license     = 'Apache License'
 
-  s.files         = `git ls-files -z`.split("\x0")
-  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.files = []
+  s.files << "README.md"
+  s.files << Dir["{lib,spec}/**/*.rb"]
+
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ['lib']
 
