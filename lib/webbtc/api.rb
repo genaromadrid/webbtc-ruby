@@ -3,7 +3,24 @@ module Webbtc
   class API
 
     def initialize(network='bitcoin')
-      Webbtc.block_chain = network.to_s
+      @network = network
+      @connection = Connection.new(url)
+    end
+
+    def url
+      @url ||= if @network == 'bitcoin'
+          ENV['WEBBTC_URL'] || Webbtc::WEBBTC_URL
+        else
+          ENV['WEBBTC_TEST_URL'] || Webbtc::WEBBTC_TEST_URL
+        end
+    end
+
+    def network=(bc)
+      unless ['bitcoin', 'testnet3'].include?(bc)
+        raise "#{bc} is not one of ['bitcoin', 'testnet3']"
+      end
+      @network = bc
+      @connection = Connection.new(url)
     end
 
     # Returns the block including all its transactions.
@@ -24,7 +41,7 @@ module Webbtc
     #   tx: List of transactions @see http://webbtc.com/api/tx
     # }
     def block(hash, format='json')
-      Connection.get("/block/#{hash}.#{format}")
+      @connection.get("/block/#{hash}.#{format}")
     end
 
     # Returns the transaction.
@@ -33,7 +50,7 @@ module Webbtc
     #
     # @return [HASH] TODO
     def transaction(hash, format='json')
-      Connection.get("/tx/#{hash}.#{format}")
+      @connection.get("/tx/#{hash}.#{format}")
     end
 
     # Returns information for this address, and a list of all transactions relevant to it.
@@ -41,14 +58,14 @@ module Webbtc
     #
     # @return [HASH] TODO
     def address(address)
-      Connection.get("/address/#{address}.json")
+      @connection.get("/address/#{address}.json")
     end
 
     # Returns the tx hash and propagation information.
     #
     # @return [HASH] TODO
     def stats
-      Connection.get('/stats.json')
+      @connection.get('/stats.json')
     end
 
     # Relay transaction
@@ -67,7 +84,7 @@ module Webbtc
     #   }
     # }
     def relay(tx, wait=3)
-      Connection.post('/relay_tx.json', {
+      @connection.post('/relay_tx.json', {
         tx: tx,
         wait: wait
       })
