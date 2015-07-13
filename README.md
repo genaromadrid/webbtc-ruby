@@ -9,7 +9,7 @@ Details of the API use can be found on the [official page][http://webbtc.com/api
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'webbtc-ruby', github: 'genaromadrid/webbtc-ruby'
+gem 'webbtc-ruby', '~> 0.0.1', github: 'genaromadrid/webbtc-ruby'
 ```
 
 And then execute:
