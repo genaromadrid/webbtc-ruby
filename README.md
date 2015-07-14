@@ -24,6 +24,13 @@ Or install it yourself as:
     $ gem build webbtc-ruby.gemspec
     $ gem install webbtc-ruby-[version].gem
 
+## Quick start
+
+```ruby
+require 'webbtc'
+Webbtc.address('18dGd4xtx5F2u7WEg3vsa2K2cT3dzwwZzG')
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/webbtc-ruby/fork )
