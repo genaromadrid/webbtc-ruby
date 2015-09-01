@@ -38,3 +38,7 @@ Webbtc.address('18dGd4xtx5F2u7WEg3vsa2K2cT3dzwwZzG')
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/genaromadrid/webbtc-ruby/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
